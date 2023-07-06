@@ -1,0 +1,133 @@
+file=open('stud_info.csv','r')
+info_dataset=[]
+while True:
+    data=file.readline()
+    if data:
+        info_dataset.append(data.replace("\n", "").split(','))        
+    else:
+        break
+print(info_dataset)
+RollNo=[]
+Name=[]
+Gender=[]
+DOB=[]
+for row in info_dataset[1:]:
+    RollNo.append(row[0])
+    Name.append(row[1])
+    Gender.append(row[2])
+    DOB.append(row[3])
+print(RollNo)
+print(Name)
+print(Gender)
+print(DOB)
+file=open('student_marks.csv','r')
+marks_dataset=[]
+while True:
+    data=file.readline()
+    if data:
+        marks_dataset.append(data.replace("\n", "").split(','))        
+    else:
+        break
+print(marks_dataset)
+Maths=[]
+Physics=[]
+Chemistry=[]
+Total=[]
+Percentage=[]
+for row in marks_dataset[1:]:
+    Maths.append(row[1])
+    Physics.append(row[2])
+    Chemistry.append(row[3])
+    Total.append(row[4])
+    Percentage.append(row[5])
+print(Maths)
+print(Physics)
+print(Chemistry)
+print(Total)
+print(Percentage)
+# Read Student Marks
+file=open('stud_placement.csv','r')
+placement_dataset=[]
+while True:
+    data=file.readline()
+    if data:
+        placement_dataset.append(data.replace("\n", "").split(','))        
+    else:
+        break
+print(placement_dataset)
+Company=[]
+JobRole=[]
+Package=[]
+for row in placement_dataset[1:]:
+    Company.append(row[1])
+    JobRole.append(row[2])
+    Package.append(row[3])
+print(Company)
+print(JobRole)
+print(Package)
+studentdata=[]
+studentdata.append(RollNo)
+studentdata.append(Name)
+studentdata.append(Gender)
+studentdata.append(DOB)
+studentdata.append(Maths)
+studentdata.append(Physics)
+studentdata.append(Chemistry)
+studentdata.append(Total)
+studentdata.append(Percentage)
+studentdata.append(Company)
+studentdata.append(JobRole)
+studentdata.append(Package)
+studentdata
+fw=open("StudentDetails.csv","w")
+data_to_write=[]
+for i in range(len(studentdata[0])):# 10 rows
+    row=list()
+    for j in range(len(studentdata)):#12 col
+        data=studentdata[j][i]
+        row.append(data)
+    row.append('\n')
+    data_to_write.append(",".join(row))
+data_to_write
+fw.writelines(data_to_write)
+fw.close()
+# 1. Sum of Marks
+# 2. Average Marks
+print("Math Marks=",Maths)
+print("Phyics Marks=",Physics)
+print("Chemistry Marks=",Chemistry)
+math=[int(i) for i in Maths]
+physics=[int(i) for i in Physics]
+chemistry=[int(i) for i in Chemistry]
+sum_of_marks=[]
+avg=[]
+for i in range(len(math)):
+    sum_of_marks.append(math[i]+physics[i]+chemistry[i])
+    avg.append(round(sum_of_marks[i]/3,2))
+print("Sum of Marks=",sum_of_marks)
+print("Average Marks=",avg)
+# 3. Max Marks
+print("Maximum Marks=",max(avg))
+# 4. Min Marks
+# Max Marks
+print("Maximum Marks=",min(avg))
+# 5. Count total no of student
+print("Total No of Student=",len(studentdata[0]))
+#6. Percentage
+#assume math marks=90, physic=90, chem=90
+per=[]
+for i in range(len(sum_of_marks)):
+    per.append(round((100*sum_of_marks[i]/270),2))
+print("Percentage=",per)
+#list Compression
+list1=['1','2','3','4']
+newlist=[]
+for i in range(len(list1)):
+    temp=int(list1[i])
+    newlist.append(temp)
+newlist
+newlist=[int(temp) for temp in list1]
+newlist
+a=10/3
+a
+round(a,2)
